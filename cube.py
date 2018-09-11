@@ -346,45 +346,27 @@ class Cube():
         current state of cube.
         """
         for move in moves:
+            #print('move in loop: ', move)
             if len(move) == 1:
-                if move == "U":
-                    self.u_move(1)
-                elif move == "R":
-                    self.r_move(1)
-                elif move == "F":
-                    self.f_move(1)
-                elif move == "D":
-                    self.d_move(1)
-                elif move == "L":
-                    self.l_move(1)
-                elif move == "B":
-                    self.b_move(1)
+                args = (1,)
             elif move[1] == "2":
-                if move == "U":
-                    self.u_move(2)
-                elif move == "R":
-                    self.r_move(2)
-                elif move == "F":
-                    self.f_move(2)
-                elif move == "D":
-                    self.d_move(2)
-                elif move == "L":
-                    self.l_move(2)
-                elif move == "B":
-                    self.b_move(2)
+                args = (2,)
             elif move[1] == "'":
-                if move == "U":
-                    self.u_move(1, True)
-                elif move == "R":
-                    self.r_move(1, True)
-                elif move == "F":
-                    self.f_move(1, True)
-                elif move == "D":
-                    self.d_move(1, True)
-                elif move == "L":
-                    self.l_move(1, True)
-                elif move == "B":
-                    self.b_move(1, True)
+                args = (1, True)
+            
+           # print('args before execution: ', *args)
+            if move[0] == "U":
+                self.u_move(*args)
+            if move[0] == "R":
+                self.r_move(*args)
+            if move[0] == "F":
+                self.f_move(*args)
+            if move[0] == "D":
+                self.d_move(*args)
+            if move[0] == "L":
+                self.l_move(*args)
+            if move[0] == "B":
+                self.b_move(*args)
 
     def get_scramble(self, lenscram):
         """Returns a list of moves 
