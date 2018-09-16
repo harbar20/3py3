@@ -13,6 +13,39 @@ class Cube():
     d_side = [["D", "D", "D"], ["D", "D", "D"], ["D", "D", "D"]]
     l_side = [["L", "L", "L"], ["L", "L", "L"], ["L", "L", "L"]]
     b_side = [["B", "B", "B"], ["B", "B", "B"], ["B", "B", "B"]]
+
+    def rotation_side(self, side, copy, numMoves, isPrime):
+        if numMoves == 1:
+            if isPrime == False:
+                side[0][0] = copy[0][2]
+                side[0][1] = copy[1][2]
+                side[0][2] = copy[2][2]
+                side[1][0] = copy[0][1]
+                side[1][1] = copy[1][1]#because centers don't change
+                side[1][2] = copy[2][1]
+                side[2][0] = copy[0][0]
+                side[2][1] = copy[1][0]
+                side[2][2] = copy[2][0]
+            elif isPrime == True:
+                side[0][0] = copy[2][0]
+                side[0][1] = copy[1][0]
+                side[0][2] = copy[0][0]
+                side[1][0] = copy[2][1]
+                side[1][1] = copy[1][1]#because centers don't change
+                side[1][2] = copy[0][1]
+                side[2][0] = copy[2][2]
+                side[2][1] = copy[1][2]
+                side[2][2] = copy[0][2]
+        elif numMoves == 2:
+            side[0][0] = copy[2][2]
+            side[0][1] = copy[2][1]
+            side[0][2] = copy[2][0]
+            side[1][0] = copy[1][2]
+            side[1][1] = copy[1][1]#because centers don't change
+            side[1][2] = copy[1][0]
+            side[2][0] = copy[0][2]
+            side[2][1] = copy[0][1]
+            side[2][2] = copy[0][0]
     
     def u_move(self, numMoves, isPrime=False):
         """Applies a certain type of 'U' move to self.u_side
@@ -61,39 +94,7 @@ class Cube():
             elif numMoves == 2:
                 self.b_side[0][b] = f_copy[0][b]
 
-        #this changes the u-side's orientation when you turn a side.
-        for u in range(9):
-            if numMoves == 1:
-                if isPrime == False:
-                    self.u_side[0][0] = u_copy[0][2]
-                    self.u_side[0][1] = u_copy[1][2]
-                    self.u_side[0][2] = u_copy[2][2]
-                    self.u_side[1][0] = u_copy[0][1]
-                    self.u_side[1][1] = u_copy[1][1]#because centers don't change
-                    self.u_side[1][2] = u_copy[2][1]
-                    self.u_side[2][0] = u_copy[0][0]
-                    self.u_side[2][1] = u_copy[1][0]
-                    self.u_side[2][2] = u_copy[2][0]
-                elif isPrime == True:
-                    self.u_side[0][0] = u_copy[2][0]
-                    self.u_side[0][1] = u_copy[1][0]
-                    self.u_side[0][2] = u_copy[0][0]
-                    self.u_side[1][0] = u_copy[2][1]
-                    self.u_side[1][1] = u_copy[1][1]#because centers don't change
-                    self.u_side[1][2] = u_copy[0][1]
-                    self.u_side[2][0] = u_copy[2][2]
-                    self.u_side[2][1] = u_copy[1][2]
-                    self.u_side[2][2] = u_copy[0][2]
-            elif numMoves == 2:
-                self.u_side[0][0] = u_copy[2][2]
-                self.u_side[0][1] = u_copy[2][1]
-                self.u_side[0][2] = u_copy[2][0]
-                self.u_side[1][0] = u_copy[1][2]
-                self.u_side[1][1] = u_copy[1][1]#because centers don't change
-                self.u_side[1][2] = u_copy[1][0]
-                self.u_side[2][0] = u_copy[0][2]
-                self.u_side[2][1] = u_copy[0][1]
-                self.u_side[2][2] = u_copy[0][0]
+        self.rotation_side(self.u_side, u_copy, numMoves, isPrime)
 
     def r_move(self, numMoves, isPrime=False):
         """Applies a certain type of 'R' move to self.r_side
@@ -104,6 +105,7 @@ class Cube():
         f_copy = copy.deepcopy(self.f_side)
         d_copy = copy.deepcopy(self.d_side)
         b_copy = copy.deepcopy(self.b_side)
+        r_copy = copy.deepcopy(self.r_side)
 
         for u in range(3):
             if numMoves == 1:
@@ -141,39 +143,7 @@ class Cube():
             elif numMoves == 2:
                 self.b_side[b][0] = f_copy[b][2]
         
-        #this changes the u-side's orientation when you turn a side.
-        for u in range(9):
-            if numMoves == 1:
-                if isPrime == False:
-                    self.u_side[0][0] = u_copy[0][2]
-                    self.u_side[0][1] = u_copy[1][2]
-                    self.u_side[0][2] = u_copy[2][2]
-                    self.u_side[1][0] = u_copy[0][1]
-                    self.u_side[1][1] = u_copy[1][1]#because centers don't change
-                    self.u_side[1][2] = u_copy[2][1]
-                    self.u_side[2][0] = u_copy[0][0]
-                    self.u_side[2][1] = u_copy[1][0]
-                    self.u_side[2][2] = u_copy[2][0]
-                elif isPrime == True:
-                    self.u_side[0][0] = u_copy[2][0]
-                    self.u_side[0][1] = u_copy[1][0]
-                    self.u_side[0][2] = u_copy[0][0]
-                    self.u_side[1][0] = u_copy[2][1]
-                    self.u_side[1][1] = u_copy[1][1]#because centers don't change
-                    self.u_side[1][2] = u_copy[0][1]
-                    self.u_side[2][0] = u_copy[2][2]
-                    self.u_side[2][1] = u_copy[1][2]
-                    self.u_side[2][2] = u_copy[0][2]
-            elif numMoves == 2:
-                self.u_side[0][0] = u_copy[2][2]
-                self.u_side[0][1] = u_copy[2][1]
-                self.u_side[0][2] = u_copy[2][0]
-                self.u_side[1][0] = u_copy[1][2]
-                self.u_side[1][1] = u_copy[1][1]#because centers don't change
-                self.u_side[1][2] = u_copy[1][0]
-                self.u_side[2][0] = u_copy[0][2]
-                self.u_side[2][1] = u_copy[0][1]
-                self.u_side[2][2] = u_copy[0][0]
+        self.rotation_side(self.r_side, r_copy, numMoves, isPrime)
 
     def f_move(self, numMoves, isPrime=False):
         """Applies a certain type of 'F' move to self.u_side
@@ -184,6 +154,7 @@ class Cube():
         u_copy = copy.deepcopy(self.u_side)
         l_copy = copy.deepcopy(self.l_side)
         d_copy = copy.deepcopy(self.d_side)
+        f_copy = copy.deepcopy(self.f_side)
 
         for r in range(3):
             if numMoves == 1:
@@ -220,6 +191,8 @@ class Cube():
                     self.d_side[0][d] = l_copy[d][2]
             elif numMoves == 2:
                 self.d_side[0][d] = u_copy[2][2-d]
+        
+        self.rotation_side(self.f_side, f_copy, numMoves, isPrime)
 
     def d_move(self, numMoves, isPrime=False):
         """Applies a certain type of 'D' move to self.u_side
@@ -230,6 +203,7 @@ class Cube():
         f_copy = copy.deepcopy(self.f_side)
         l_copy = copy.deepcopy(self.l_side)
         b_copy = copy.deepcopy(self.b_side)
+        d_copy = copy.deepcopy(self.d_side)
 
         for r in range(3):
             if numMoves == 1:
@@ -266,6 +240,8 @@ class Cube():
                     self.b_side[2][b] = l_copy[2][b]
             elif numMoves == 2:
                 self.b_side[2][b] = f_copy[2][b]
+        
+        self.rotation_side(self.d_side, d_copy, numMoves, isPrime)
 
     def l_move(self, numMoves, isPrime=False):
         """Applies a certain type of 'L' move to self.r_side
@@ -276,6 +252,7 @@ class Cube():
         f_copy = copy.deepcopy(self.f_side)
         d_copy = copy.deepcopy(self.d_side)
         b_copy = copy.deepcopy(self.b_side)
+        l_copy = copy.deepcopy(self.l_side)
 
         for u in range(3):
             if numMoves == 1:
@@ -312,6 +289,8 @@ class Cube():
                     self.b_side[b][2] = u_copy[b][0]
             elif numMoves == 2:
                 self.b_side[b][2] = f_copy[b][0]
+        
+        self.rotation_side(self.l_side, l_copy, numMoves, isPrime)
 
     def b_move(self, numMoves, isPrime=False):
         """Applies a certain type of 'B' move to self.u_side
@@ -322,6 +301,7 @@ class Cube():
         u_copy = copy.deepcopy(self.u_side)
         l_copy = copy.deepcopy(self.l_side)
         d_copy = copy.deepcopy(self.d_side)
+        b_copy = copy.deepcopy(self.b_side)
 
         for r in range(3):
             if numMoves == 1:
@@ -358,6 +338,8 @@ class Cube():
                     self.d_side[2][d] = r_copy[2-d][2]
             elif numMoves == 2:
                 self.d_side[2][d] = u_copy[0][2-d]
+        
+        self.rotation_side(self.b_side, b_copy, numMoves, isPrime)
 
     def __str__(self):
         """Prints the current state
@@ -460,12 +442,8 @@ class Cube():
         """
         #urfdlb
         cubeState = self.u_side + self.r_side + self.f_side + self.d_side + self.l_side + self.b_side
-    #    print('cubestate before comprehension: ', cubeState)
         cubeState = [j for i in cubeState for j in i]
-     #   print('cubestate after comprehension: ', cubeState)
         cubeState = ''.join(cubeState)
-     #   print('cubestate after join: ', cubeState)
 
         cubeState = kociemba.solve(cubeState)
-      #  print('cubestate after kociemba: ', cubeState)
         return cubeState
