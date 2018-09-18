@@ -15,37 +15,23 @@ class Cube():
     b_side = [["B", "B", "B"], ["B", "B", "B"], ["B", "B", "B"]]
 
     def rotation_side(self, side, copy, numMoves, isPrime):
+        """
+        Rotates a given side when 
+        that same move is made. 
+        """
         if numMoves == 1:
             if isPrime == False:
-                side[0][0] = copy[0][2]
-                side[0][1] = copy[1][2]
-                side[0][2] = copy[2][2]
-                side[1][0] = copy[0][1]
-                side[1][1] = copy[1][1]#because centers don't change
-                side[1][2] = copy[2][1]
-                side[2][0] = copy[0][0]
-                side[2][1] = copy[1][0]
-                side[2][2] = copy[2][0]
+                side[0] = [copy[0][2], copy[1][2], copy[2][2]]
+                side[1] = [copy[0][1], copy[1][1], copy[2][1]]
+                side[2] = [copy[0][0], copy[1][0], copy[2][0]]
             elif isPrime == True:
-                side[0][0] = copy[2][0]
-                side[0][1] = copy[1][0]
-                side[0][2] = copy[0][0]
-                side[1][0] = copy[2][1]
-                side[1][1] = copy[1][1]#because centers don't change
-                side[1][2] = copy[0][1]
-                side[2][0] = copy[2][2]
-                side[2][1] = copy[1][2]
-                side[2][2] = copy[0][2]
+                side[0] = [copy[2][0], copy[1][0], copy[0][0]]
+                side[1] = [copy[2][1], copy[1][1], copy[1][0]]
+                side[2] = [copy[2][2], copy[1][2], copy[0][2]]
         elif numMoves == 2:
-            side[0][0] = copy[2][2]
-            side[0][1] = copy[2][1]
-            side[0][2] = copy[2][0]
-            side[1][0] = copy[1][2]
-            side[1][1] = copy[1][1]#because centers don't change
-            side[1][2] = copy[1][0]
-            side[2][0] = copy[0][2]
-            side[2][1] = copy[0][1]
-            side[2][2] = copy[0][0]
+            side[0] = [copy[2][2], copy[2][1], copy[2][0]]
+            side[1] = [copy[1][2], copy[1][1], copy[1][0]]
+            side[2] = [copy[0][2], copy[0][1], copy[0][0]]
     
     def u_move(self, numMoves, isPrime=False):
         """Applies a certain type of 'U' move to self.u_side
@@ -438,7 +424,8 @@ class Cube():
     
     def get_solve(self):
         """Returns the optimal
-        solution to the current state of the cube.
+        solution to the current 
+        state of the cube.
         """
         #urfdlb
         cubeState = self.u_side + self.r_side + self.f_side + self.d_side + self.l_side + self.b_side
