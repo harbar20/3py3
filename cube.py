@@ -429,8 +429,12 @@ class Cube():
         """
         #urfdlb
         cubeState = self.u_side + self.r_side + self.f_side + self.d_side + self.l_side + self.b_side
+        print("cubestate before: ", cubeState)
         cubeState = [j for i in cubeState for j in i]
+        print("cubestate during: ", cubeState)
         cubeState = ''.join(cubeState)
+        print("cubestate after: ", cubeState)
 
         cubeState = kociemba.solve(cubeState)
+        print("cubestate after kociemba: ", cubeState)
         return cubeState
