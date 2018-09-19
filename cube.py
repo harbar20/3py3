@@ -21,13 +21,13 @@ class Cube():
         """
         if numMoves == 1:
             if isPrime == False:
-                side[0] = [copy[0][2], copy[1][2], copy[2][2]]
-                side[1] = [copy[0][1], copy[1][1], copy[2][1]]
-                side[2] = [copy[0][0], copy[1][0], copy[2][0]]
-            elif isPrime == True:
                 side[0] = [copy[2][0], copy[1][0], copy[0][0]]
                 side[1] = [copy[2][1], copy[1][1], copy[1][0]]
                 side[2] = [copy[2][2], copy[1][2], copy[0][2]]
+            elif isPrime == True:
+                side[0] = [copy[0][2], copy[1][2], copy[2][2]]
+                side[1] = [copy[0][1], copy[1][1], copy[2][1]]
+                side[2] = [copy[0][0], copy[1][0], copy[2][0]]
         elif numMoves == 2:
             side[0] = [copy[2][2], copy[2][1], copy[2][0]]
             side[1] = [copy[1][2], copy[1][1], copy[1][0]]
@@ -331,7 +331,7 @@ class Cube():
         """Prints the current state
         of the cube. Should look something
         like this:
-        |************|
+             |************|
              |*U1**U2**U3*|
              |************|
              |*U4**U5**U6*|
@@ -437,4 +437,12 @@ class Cube():
 
         cubeState = kociemba.solve(cubeState)
         print("cubestate after kociemba: ", cubeState)
-        return cubeState
+
+        #loop to return giant string as a list for easier execution
+        final = []
+        for i in cubeState:
+            final.append(i)
+
+        return final
+
+cube = Cube()
