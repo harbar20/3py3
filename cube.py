@@ -19,10 +19,11 @@ class Cube():
         Rotates a given side when 
         that same move is made. 
         """
+        print("side before rotation: ", side)
         if numMoves == 1:
             if isPrime == False:
                 side[0] = [copy[2][0], copy[1][0], copy[0][0]]
-                side[1] = [copy[2][1], copy[1][1], copy[1][0]]
+                side[1] = [copy[2][1], copy[1][1], copy[0][1]]
                 side[2] = [copy[2][2], copy[1][2], copy[0][2]]
             elif isPrime == True:
                 side[0] = [copy[0][2], copy[1][2], copy[2][2]]
@@ -32,6 +33,8 @@ class Cube():
             side[0] = [copy[2][2], copy[2][1], copy[2][0]]
             side[1] = [copy[1][2], copy[1][1], copy[1][0]]
             side[2] = [copy[0][2], copy[0][1], copy[0][0]]
+
+        print("side after rotation: ", side)
     
     def u_move(self, numMoves, isPrime=False):
         """Applies a certain type of 'U' move to self.u_side
@@ -429,20 +432,16 @@ class Cube():
         """
         #urfdlb
         cubeState = self.u_side + self.r_side + self.f_side + self.d_side + self.l_side + self.b_side
-        print("cubestate before: ", cubeState)
+      #  print("cubestate before: ", cubeState)
         cubeState = [j for i in cubeState for j in i]
-        print("cubestate during: ", cubeState)
+     #   print("cubestate during: ", cubeState)
         cubeState = ''.join(cubeState)
-        print("cubestate after: ", cubeState)
+     #   print("cubestate after: ", cubeState)
 
         cubeState = kociemba.solve(cubeState)
         print("cubestate after kociemba: ", cubeState)
 
-        #loop to return giant string as a list for easier execution
-        final = []
-        for i in cubeState:
-            final.append(i)
-
-        return final
+        cubeState = cubeState.split(" ")
+        return cubeState
 
 cube = Cube()
