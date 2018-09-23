@@ -112,7 +112,7 @@ class Cube():
                 elif isPrime == True:
                     self.f_side[f][2] = u_copy[f][2]
             elif numMoves == 2:
-                self.f_side[f][2] = b_copy[f][0]
+                self.f_side[f][2] = b_copy[2-f][0]
         
         for d in range(3):
             if numMoves == 1:
@@ -130,7 +130,7 @@ class Cube():
                 elif isPrime == True:
                     self.b_side[b][0] = d_copy[2-b][2]
             elif numMoves == 2:
-                self.b_side[b][0] = f_copy[b][2]
+                self.b_side[b][0] = f_copy[2-b][2]
         
         self.rotation_side(self.r_side, r_copy, numMoves, isPrime)
 
