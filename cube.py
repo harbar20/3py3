@@ -19,7 +19,7 @@ class Cube():
         Rotates a given side when 
         that same move is made. 
         """
-        print("side before rotation: ", side)
+       # print("side before rotation: ", side)
         if numMoves == 1:
             if isPrime == False:
                 side[0] = [copy[2][0], copy[1][0], copy[0][0]]
@@ -34,7 +34,7 @@ class Cube():
             side[1] = [copy[1][2], copy[1][1], copy[1][0]]
             side[2] = [copy[0][2], copy[0][1], copy[0][0]]
 
-        print("side after rotation: ", side)
+      #  print("side after rotation: ", side)
     
     def u_move(self, numMoves, isPrime=False):
         """Applies a certain type of 'U' move to self.u_side
@@ -101,7 +101,7 @@ class Cube():
                 if isPrime == False:
                     self.u_side[u][2] = f_copy[u][2]
                 elif isPrime == True:
-                    self.u_side[u][2] = b_copy[u][0]
+                    self.u_side[u][2] = b_copy[2-u][0]
             elif numMoves == 2:
                 self.u_side[u][2] = d_copy[u][2]
         
@@ -117,7 +117,7 @@ class Cube():
         for d in range(3):
             if numMoves == 1:
                 if isPrime == False:
-                    self.d_side[d][2] = b_copy[d][2]
+                    self.d_side[d][2] = b_copy[2-d][0]
                 elif isPrime == True:
                     self.d_side[d][2] = f_copy[d][2]
             elif numMoves == 2:
@@ -126,9 +126,9 @@ class Cube():
         for b in range(3):
             if numMoves == 1:
                 if isPrime == False:
-                    self.b_side[b][0] = u_copy[b][0]
+                    self.b_side[b][0] = u_copy[2-b][2]
                 elif isPrime == True:
-                    self.b_side[b][0] = d_copy[b][2]
+                    self.b_side[b][0] = d_copy[2-b][2]
             elif numMoves == 2:
                 self.b_side[b][0] = f_copy[b][2]
         
@@ -230,7 +230,7 @@ class Cube():
             elif numMoves == 2:
                 self.b_side[2][b] = f_copy[2][b]
         
-        self.rotation_side(self.d_side, d_copy, numMoves, isPrime)
+        self.rotation_side(self.d_side, d_copy, numMoves, isPrime) 
 
     def l_move(self, numMoves, isPrime=False):
         """Applies a certain type of 'L' move to self.r_side
@@ -246,7 +246,7 @@ class Cube():
         for u in range(3):
             if numMoves == 1:
                 if isPrime == False:
-                    self.u_side[u][0] = b_copy[u][0]
+                    self.u_side[u][0] = b_copy[2-u][2]
                 elif isPrime == True:
                     self.u_side[u][0] = f_copy[u][0]
             elif numMoves == 2:
@@ -259,25 +259,25 @@ class Cube():
                 elif isPrime == True:
                     self.f_side[f][0] = d_copy[f][0]
             elif numMoves == 2:
-                self.f_side[f][0] = b_copy[f][2]
+                self.f_side[f][0] = b_copy[2-f][2]
         
         for d in range(3):
             if numMoves == 1:
                 if isPrime == False:
                     self.d_side[d][0] = f_copy[d][0]
                 elif isPrime == True:
-                    self.d_side[d][0] = b_copy[d][2]
+                    self.d_side[d][0] = b_copy[2-d][2]
             elif numMoves == 2:
                 self.d_side[d][0] = u_copy[d][0]
         
         for b in range(3):
             if numMoves == 1:
                 if isPrime == False:
-                    self.b_side[b][2] = d_copy[b][0]
+                    self.b_side[b][2] = d_copy[2-b][0]
                 elif isPrime == True:
-                    self.b_side[b][2] = u_copy[b][0]
+                    self.b_side[b][2] = u_copy[2-b][0]
             elif numMoves == 2:
-                self.b_side[b][2] = f_copy[b][0]
+                self.b_side[b][2] = f_copy[2-b][0]
         
         self.rotation_side(self.l_side, l_copy, numMoves, isPrime)
 
@@ -295,16 +295,16 @@ class Cube():
         for r in range(3):
             if numMoves == 1:
                 if isPrime == False:
-                    self.r_side[r][2] = d_copy[2][r]
+                    self.r_side[r][2] = d_copy[2][2-r]
                 elif isPrime == True:
                     self.r_side[r][2] = u_copy[0][r]
             elif numMoves == 2:
-                self.r_side[r][2] = l_copy[r][0]
+                self.r_side[r][2] = l_copy[2-r][0]
         
         for u in range(3):
             if numMoves == 1:
                 if isPrime == False:
-                    self.u_side[0][u] = r_copy[u][2]
+                    self.u_side[0][u] = r_copy[2-u][2]
                 elif isPrime == True:
                     self.u_side[0][u] = l_copy[2-u][0]
             elif numMoves == 2:
@@ -315,14 +315,14 @@ class Cube():
                 if isPrime == False:
                     self.l_side[l][0] = u_copy[0][2-l]
                 elif isPrime == True:
-                    self.l_side[l][0] = d_copy[2][l]
+                    self.l_side[l][0] = d_copy[2][2-l]
             elif numMoves == 2:
                 self.l_side[l][0] = r_copy[2-l][2]
         
         for d in range(3):
             if numMoves == 1:
                 if isPrime == False:
-                    self.d_side[2][d] = l_copy[d][0]
+                    self.d_side[2][d] = l_copy[2-d][0]
                 elif isPrime == True:
                     self.d_side[2][d] = r_copy[2-d][2]
             elif numMoves == 2:
