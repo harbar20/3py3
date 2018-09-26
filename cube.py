@@ -242,6 +242,7 @@ class Cube():
         d_copy = copy.deepcopy(self.d_side)
         b_copy = copy.deepcopy(self.b_side)
         l_copy = copy.deepcopy(self.l_side)
+        
 
         for u in range(3):
             if numMoves == 1:
@@ -315,7 +316,7 @@ class Cube():
                 if isPrime == False:
                     self.l_side[l][0] = u_copy[0][2-l]
                 elif isPrime == True:
-                    self.l_side[l][0] = d_copy[2][2-l]
+                    self.l_side[l][0] = d_copy[2][l]
             elif numMoves == 2:
                 self.l_side[l][0] = r_copy[2-l][2]
         
@@ -439,7 +440,7 @@ class Cube():
      #   print("cubestate after: ", cubeState)
 
         cubeState = kociemba.solve(cubeState)
-        print("cubestate after kociemba: ", cubeState)
+       # print("cubestate after kociemba: ", cubeState)
 
         cubeState = cubeState.split(" ")
         return cubeState
