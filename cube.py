@@ -445,25 +445,4 @@ class Cube():
         cubeState = cubeState.split(" ")
         return cubeState
 
-    def scramble_cube(self, lenScram=20, scramble=[]):
-        """Scrambles the cube
-        using a random scramble
-        OR usig a given scramble.
-        Random scramble is defaulted
-        to be 20 long. 
-        """
-        randomScram = self.get_scramble(lenScram)
-
-        if scramble != []:
-            self.execute(scramble)
-        else:
-            self.execute(randomScram)
-
-    def solve_cube(self):
-        """Solves the cube
-        in its current state.
-        """
-        solution = self.get_solve()
-        self.execute(solution)
-
 cube = Cube()
