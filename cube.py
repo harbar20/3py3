@@ -305,7 +305,7 @@ class Cube():
         for u in range(3):
             if numMoves == 1:
                 if isPrime == False:
-                    self.u_side[0][u] = r_copy[2-u][2]
+                    self.u_side[0][u] = r_copy[u][2]
                 elif isPrime == True:
                     self.u_side[0][u] = l_copy[2-u][0]
             elif numMoves == 2:
