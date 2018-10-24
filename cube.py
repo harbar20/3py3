@@ -391,7 +391,7 @@ class Cube():
             if len(move) == 1:
                 args = (1,)
             elif move[1] == "2":
-                args = (2,)
+                args = (2,) 
             elif move[1] == "'":
                 args = (1, True)
             
