@@ -2,6 +2,19 @@ import random
 import kociemba
 import copy
 
+"""
+#switch statement to be used to execute moves
+def executeSwitch(move, args):
+    switcher = {
+                "U": self.u_move(*args),
+                "R": self.r_move(*args),
+                "F": self.f_move(*args),
+                "D": self.d_move(*args),
+                "L": self.l_move(*args),
+                "B": self.b_move(*args)
+                }
+    return switcher.get(move, "Invalid move")
+"""
 class Cube():
     # All valid 3x3x3 moves in half-turn metric
     notations = {"U", "D",
@@ -396,6 +409,7 @@ class Cube():
                 args = (1, True)
             
            # print('args before execution: ', *args)
+            
             if move[0] == "U":
                 self.u_move(*args)
             if move[0] == "R":
@@ -408,6 +422,8 @@ class Cube():
                 self.l_move(*args)
             if move[0] == "B":
                 self.b_move(*args)
+            
+           # executeSwitch(move[0])
 
     def get_scramble(self, lenscram):
         """Returns a list of moves 
@@ -444,5 +460,3 @@ class Cube():
 
         cubeState = cubeState.split(" ")
         return cubeState
-
-cube = Cube()
