@@ -261,27 +261,6 @@ class Cube():
         with open('cube.txt') as f:
             diagram = f.read()
 
-        """
-        state = diagram.format(self.u_side[0][0], self.u_side[0][1], self.u_side[0][2], 
-                               self.u_side[1][0], self.u_side[1][1], self.u_side[1][2],
-                               self.u_side[2][0], self.u_side[2][1], self.u_side[2][2],
-                               self.l_side[0][0], self.l_side[0][1], self.l_side[0][2],
-                               self.f_side[0][0], self.f_side[0][1], self.f_side[0][2],
-                               self.r_side[0][0], self.r_side[0][1], self.r_side[0][2],
-                               self.b_side[0][0], self.b_side[0][1], self.b_side[0][2],
-                               self.l_side[1][0], self.l_side[1][1], self.l_side[1][2],
-                               self.f_side[1][0], self.f_side[1][1], self.f_side[1][2],
-                               self.r_side[1][0], self.r_side[1][1], self.r_side[1][2],
-                               self.b_side[1][0], self.b_side[1][1], self.b_side[1][2],
-                               self.l_side[2][0], self.l_side[2][1], self.l_side[2][2],
-                               self.f_side[2][0], self.f_side[2][1], self.f_side[2][2],
-                               self.r_side[2][0], self.r_side[2][1], self.r_side[2][2],
-                               self.b_side[2][0], self.b_side[2][1], self.b_side[2][2],
-                               self.d_side[0][0], self.d_side[0][1], self.d_side[0][2],
-                               self.d_side[1][0], self.d_side[1][1], self.d_side[1][2],
-                               self.d_side[2][0], self.d_side[2][1], self.d_side[2][2])
-        """
-
         u_state = [self.u_side[i][j] for i in range(3) for j in range(3)]
         l_state = [self.l_side[i][j] for i in range(3) for j in range(3)]
         f_state = [self.f_side[i][j] for i in range(3) for j in range(3)]
