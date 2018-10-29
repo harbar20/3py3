@@ -261,29 +261,50 @@ class Cube():
         with open('cube.txt') as f:
             diagram = f.read()
 
+        """
         state = diagram.format(self.u_side[0][0], self.u_side[0][1], self.u_side[0][2], 
-                       self.u_side[1][0], self.u_side[1][1], self.u_side[1][2],
-                       self.u_side[2][0], self.u_side[2][1], self.u_side[2][2],
-                       self.l_side[0][0], self.l_side[0][1], self.l_side[0][2],
-                       self.f_side[0][0], self.f_side[0][1], self.f_side[0][2],
-                       self.r_side[0][0], self.r_side[0][1], self.r_side[0][2],
-                       self.b_side[0][0], self.b_side[0][1], self.b_side[0][2],
-                       self.l_side[1][0], self.l_side[1][1], self.l_side[1][2],
-                       self.f_side[1][0], self.f_side[1][1], self.f_side[1][2],
-                       self.r_side[1][0], self.r_side[1][1], self.r_side[1][2],
-                       self.b_side[1][0], self.b_side[1][1], self.b_side[1][2],
-                       self.l_side[2][0], self.l_side[2][1], self.l_side[2][2],
-                       self.f_side[2][0], self.f_side[2][1], self.f_side[2][2],
-                       self.r_side[2][0], self.r_side[2][1], self.r_side[2][2],
-                       self.b_side[2][0], self.b_side[2][1], self.b_side[2][2],
-                       self.d_side[0][0], self.d_side[0][1], self.d_side[0][2],
-                       self.d_side[1][0], self.d_side[1][1], self.d_side[1][2],
-                       self.d_side[2][0], self.d_side[2][1], self.d_side[2][2])
-        
+                               self.u_side[1][0], self.u_side[1][1], self.u_side[1][2],
+                               self.u_side[2][0], self.u_side[2][1], self.u_side[2][2],
+                               self.l_side[0][0], self.l_side[0][1], self.l_side[0][2],
+                               self.f_side[0][0], self.f_side[0][1], self.f_side[0][2],
+                               self.r_side[0][0], self.r_side[0][1], self.r_side[0][2],
+                               self.b_side[0][0], self.b_side[0][1], self.b_side[0][2],
+                               self.l_side[1][0], self.l_side[1][1], self.l_side[1][2],
+                               self.f_side[1][0], self.f_side[1][1], self.f_side[1][2],
+                               self.r_side[1][0], self.r_side[1][1], self.r_side[1][2],
+                               self.b_side[1][0], self.b_side[1][1], self.b_side[1][2],
+                               self.l_side[2][0], self.l_side[2][1], self.l_side[2][2],
+                               self.f_side[2][0], self.f_side[2][1], self.f_side[2][2],
+                               self.r_side[2][0], self.r_side[2][1], self.r_side[2][2],
+                               self.b_side[2][0], self.b_side[2][1], self.b_side[2][2],
+                               self.d_side[0][0], self.d_side[0][1], self.d_side[0][2],
+                               self.d_side[1][0], self.d_side[1][1], self.d_side[1][2],
+                               self.d_side[2][0], self.d_side[2][1], self.d_side[2][2])
+        """
+
+        u_state = [self.u_side[i][j] for i in range(3) for j in range(3)]
+        l_state = [self.l_side[i][j] for i in range(3) for j in range(3)]
+        f_state = [self.f_side[i][j] for i in range(3) for j in range(3)]
+        r_state = [self.r_side[i][j] for i in range(3) for j in range(3)]
+        b_state = [self.b_side[i][j] for i in range(3) for j in range(3)]
+        d_state = [self.d_side[i][j] for i in range(3) for j in range(3)]
+
+        cubeState = u_state + \
+                    l_state[:3] + f_state[:3] + r_state[:3] + b_state[:3] + \
+                    l_state[3:6] + f_state[3:6] + r_state[3:6] + b_state[3:6] + \
+                    l_state[6:9] + f_state[6:9] + r_state[6:9] + b_state[6:9] + \
+                    d_state
+
+        state = diagram.format(*cubeState)
+
         return state
 
     #switch statement to be used to execute moves
     def executeSwitch(self, move, args):
+        """
+        Replicates a switch-case statement
+        to be used to in self.execute
+        """
         #dictionary to assign each move to a function
         switcher = {"U": self.u_move,
                     "R": self.r_move,
@@ -294,7 +315,7 @@ class Cube():
                     }
         
         #function to get the move, and thus, the function
-        func = switcher.get(move)
+        func = switcher.get(move[0])
         func(*args)
 
     def execute(self, moves):
@@ -303,7 +324,6 @@ class Cube():
         current state of cube.
         """
         for move in moves:
-            #print('move in loop: ', move)
             if len(move) == 1:
                 args = (1,)
             elif move[1] == "2":
@@ -311,33 +331,17 @@ class Cube():
             elif move[1] == "'":
                 args = (1, True)
             
-           # print('args before execution: ', *args)
-            """
-            if move[0] == "U":
-                self.u_move(*args)
-            if move[0] == "R":
-                self.r_move(*args)
-            if move[0] == "F":
-                self.f_move(*args)
-            if move[0] == "D":
-                self.d_move(*args)
-            if move[0] == "L":
-                self.l_move(*args)
-            if move[0] == "B":
-                self.b_move(*args)
-            """
             self.executeSwitch(move[0], args)
 
     def get_scramble(self, lenscram):
         """Returns a list of moves 
-        to scramble a 3x3 cube. 
+        to scramble the cube. 
         """ 
         scramble = []
     
         for i in range(lenscram):
             if i == 0:
                 move = random.choice(list(self.notations)) + random.choice(["", "'", "2"])
-           
             else:
                 move = random.choice(list(self.notations - set(scramble[-1][0]))) + random.choice(["", "'", "2"])
 
@@ -352,14 +356,13 @@ class Cube():
         """
         #urfdlb
         cubeState = self.u_side + self.r_side + self.f_side + self.d_side + self.l_side + self.b_side
-      #  print("cubestate before: ", cubeState)
+        #goes through each list in cubeState, then each letter in each list
         cubeState = [j for i in cubeState for j in i]
-     #   print("cubestate during: ", cubeState)
+
+        #joins together all the letters in cubeState
         cubeState = ''.join(cubeState)
-     #   print("cubestate after: ", cubeState)
-
         cubeState = kociemba.solve(cubeState)
-       # print("cubestate after kociemba: ", cubeState)
 
+        #separates the solution between spaces
         cubeState = cubeState.split(" ")
         return cubeState
